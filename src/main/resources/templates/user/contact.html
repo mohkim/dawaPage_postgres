@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+
+        <!--        console start-->
+        <section class="pt-5  " >
+            <div class="container">
+
+
+                <div class="row">
+
+                    <div class="col-lg-8 mb-4 offset-2">
+                        <div class=" jumbotron"   sec:authorize="hasRole('ROLE_USER')">
+                            <div  class=" h1  pb-5 " style="text-align: center; ">   መልአኽቲ ናብ ምምሕዳር </div>
+                            <form name="sentMessage" id="contactForm" th:object="${message}" th:action="@{/messageSave}" method="POST" autocomplete="off" >
+                                <div  class=" pb-5    "  >   ምሉእ ስም ፥  <span th:text="${name}"></span> </div>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <label>ትሕዝቶ መልአኽቲ:</label>
+                                        <textarea  rows="10" cols="100"  th:field="*{content}" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="250" style="resize:none"></textarea>
+                                    </div>
+                                </div>
+                                <div id="success"></div>
+                                <!-- For success/fail messages -->
+                                <div class="mb-auto"> 
+                                    <button type="submit" class="btn btn-primary  "   id="sendMessageButton">ቀጽል</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+    </body>
+</html>

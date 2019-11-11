@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+      <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+        
+ 
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+        
+        
+            <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+ 
+
+
+
+
+            <table class="table "   >
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>First Name</th>
+                        <th>Father's Name</th>
+                        <th>last Name</th>
+                        <th>Gender</th>
+                        <th>Active</th>
+                        <th>Detail</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>GO </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  th:each="user:${data}"> 
+                        <td   th:text="${user.user_id}" >1</td>
+                        <td th:text="${user.first_name}"><h5>ሓዲስ</h5></td>
+                        <td th:text="${user.second_name}"><h5>ሓዲስ</h5></td>
+                        <td th:text="${user.last_name}"><h5>ሓዲስ</h5></td>
+                        <td   th:text="${user.gender}" >1</td>
+                        <td   th:text="${user.userActive}?'Active':'Inactive'" ></td>
+
+                        <td ><a      th:href="@{userdetail(uid=${user.user_id})}"   >Detail</a></td>   <!--th:href="@{topicfind/(id=${topic.id})}"-->
+                        <td ><a    th:href="@{useredit(uid=${user.user_id})}">       Edit User</a></td>   <!--th:href="@{topicfind/(id=${topic.id})}"-->
+                        <td><a    th:href="@{userdelete(uid=${user.user_id})}" >     Delete</a></td>
+                        <td><a      > send </a></td>
+                    </tr>
+                    <!--       <td >  <a   th:href="@{/addTask(email=${user.email})}" class="waves-effect waves-light btn">Add Task</a></td>-->
+
+
+                </tbody>
+
+
+            </table>
+
+            </div>
+        
+        </section>
+        
+        
+
+ 
+
+ 
+
+
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+        
+      
+        
+
+    </body>
+</html>

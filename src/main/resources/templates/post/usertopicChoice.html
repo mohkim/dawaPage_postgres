@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+    <body>
+
+
+
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+
+        <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+                <div class=" row justify-content-md-center">
+                    <div class="col-lg-6  ">
+
+
+
+
+                        <table class="table bordered"   >
+                            <thead>
+                                <tr>
+
+                                    <th>Sub Topic </th>
+                                    <th>Detail</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  th:each="Sub_topic:${subTopicList}"> 
+                                    <td    ><a class="wwaves-effect waves-light waves-teal btn-floating modal-trigger "     th:href="@{postList(id=${Sub_topic.id})}" th:text="${Sub_topic.name}"  ></a></td>
+
+                                    <td th:text="${Sub_topic.description}"><h5>ሓዲስ</h5></td>
+
+
+                                </tr>
+
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+
+
+    </body>
+</html>

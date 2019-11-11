@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+
+        <!--        console start-->
+        
+        <div  style="height:100px">
+            
+        </div>
+        <section class="pt-5  " style="min-height: 100%;">
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ተ.ቁ</th>
+                            <th scope="col">ስም</th>
+                            <th scope="col">ስም ኣቦ </th>
+                            <th scope="col">    ዝርዝር ዝጽሕፈሉ ዘሎ ኣርእስታት </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  th:each="user:${users}">
+                            <th scope="row"  th:text="${user.user_id}"  >1</th>
+                            <td  th:text="${user.first_name}">Mark</td>
+                            <td  th:text="${user.second_name}">Otto</td>
+                            <td  > 
+                                <div>
+                                    <table class="table-borderless">
+
+                                        <tbody>
+                                            <tr   th:each="st:${user.sub_topicList}" >
+                                                    <td></td>    <td></td>  <td></td>    <td></td>
+                                                <td  th:text="${st.topic.name}">Otto</td>
+                                                <td></td>    <td></td>  <td></td>    <td></td>
+                                                <td ><a  th:href="@{showPost(id=${st.id})}"  th:text="${st.name}"> </a>  </td> 
+                                                  
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </td>
+                        </tr>   </tbody>
+                </table>
+
+
+
+
+            </div>
+        </section>
+
+ 
+        <div   th:include="fragments/footer::footer" ></div>
+ 
+    </body>
+</html>

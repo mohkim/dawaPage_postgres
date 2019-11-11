@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+         
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+
+    <section  style="min-height: 100% "  >
+            <div  class="container pt-5" >
+
+   <form class="form-inline" th:action="@{/useraddtopic}"    method="POST" >
+
+<!--                            invisible  for  id store only-->
+                <div class="d-none">           
+                       <input   type="text"  th:field="${userTopicEdit.id}" />  
+                </div>
+
+                <div class="form-group row">
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="  form-control-label">Select Topic</label>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" th:field="${userTopicEdit.subTopicid}" id="exampleFormControlSelect1">  
+
+                                <option th:each="subtopic : ${allSubTopic}" style="font-size: 16"
+                                        th:value="${subtopic.id}"
+                                        th:utext="${subtopic.topic.name}+'--'+${subtopic.name}"/>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary mb-2">add Sub Topic</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+
+
+            <table class="table "   >
+                <thead>
+                    <tr>
+                        <th  class="d-none">id</th>
+                        <th>Topic</th>
+                        <th>SubTopic Name</th>
+
+                        <th></th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  th:each="subTopic:${userSubTopic}"> 
+                        <td   class="d-none" th:text="${subTopic.id}" >1</td>
+                        <td th:text="${subTopic.topic.name}"><h5>ሓዲስ</h5></td>
+                        <td th:text="${subTopic.name}"><h5>ሓዲስ</h5></td>
+
+                        <td><a   th:href="@{userRemovetopic(sid=${subTopic.id},uid=${userTopicEdit.id})}"  >     Delete</a></td>
+ 
+                    </tr>
+                    <!--       <td >  <a   th:href="@{/addTask(email=${user.email})}" class="waves-effect waves-light btn">Add Task</a></td>-->
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+ 
+        
+        </section>
+        
+ 
+
+          
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+    
+        
+
+    </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+        <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+
+                <div class=" row justify-content-md-center">
+                    <div class="col-lg-6  ">
+
+
+
+                        <!-- body start here -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul id="tabsJustified" class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a
+                                            href=""
+                                            data-target="#address"
+                                            data-toggle="tab"
+                                            class="nav-link small text-uppercase  active  "
+                                            >Edit Address</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            href=""
+                                            data-target="#password"
+                                            data-toggle="tab"
+                                            class="nav-link small text-uppercase "
+                                            >Change Password</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            href=""
+                                            data-target="#messages1"
+                                            data-toggle="tab"
+                                            class="nav-link small text-uppercase"
+                                            >Messages</a
+                                        >
+                                    </li>
+                                </ul>
+                                <br />
+                                <div id="tabsJustifiedContent" class="tab-content">
+                                    <div id="address" class="tab-pane fade  show active  ">
+                                        <!-- address panel  start  -->
+
+
+                                        <div class="card card-outline-secondary">
+
+                                            <div class="card-body">
+                                                <form class="form" role="form" autocomplete="off">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Country</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text"  >
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">City</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text"  >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label">Phone Number</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text"  >
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                                                        <div class="col-lg-9">
+
+                                                            <input type="button" class="btn btn-primary" value="Save Changes">
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- address  panel  end -->
+
+                                    </div>
+                                    <div id="password" class="tab-pane fade  show">
+
+                                        <!-- pasword  panel -->
+                                        <div class="card card-outline-secondary">
+                                            <div class="card-body">
+                                                <form class="form" role="form" autocomplete="off">
+                                                    <div class="form-group">
+                                                        <label for="inputPasswordOld">Current Password</label>
+                                                        <input type="password" class="form-control" id="inputPasswordOld" required="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPasswordNew">New Password</label>
+                                                        <input type="password" class="form-control" id="inputPasswordNew" required="">
+                                                            <span class="form-text small text-muted">
+                                                                The password must be 8-20 characters, and must <em>not</em> contain spaces.
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPasswordNewVerify">Verify</label>
+                                                        <input type="password" class="form-control" id="inputPasswordNewVerify" required="">
+                                                            <span class="form-text small text-muted">
+                                                                To confirm, type the new password again.
+                                                            </span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success btn-lg float-right">Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- pasword  panel  end -->
+
+                                    </div>
+                                    <div id="messages1" class="tab-pane fade">
+                                        <!-- other panel -->
+
+
+                                        <!-- other panel  end -->
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </section>
+
+
+
+
+
+
+                    <!-- ends here -->
+                    <div   th:include="fragments/footer::footer" ></div>
+
+
+
+                    </body>
+                    </html>

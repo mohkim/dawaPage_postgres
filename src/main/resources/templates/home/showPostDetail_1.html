@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+     
+
+        <div  class="container">
+             <div   th:include="fragments/header::header" ></div>
+            
+            
+             <h1 class="" th:text="${post.postTopic}"  style="text-align: center"><u></u> </h1>
+             <div  style="padding-top: 10px" th:utext="${post.post_content}">
+                 
+            </div>
+
+ 
+ 
+     
+        <div class=""   th:each="oldc:${commentList}">
+            
+            <label   th:text="${oldc.user.first_name}+' '+${oldc.user.second_name}">Email address</label> 
+                <p th:text="${oldc.content}">   </p>
+                
+        </div>      
+      <div class=""  sec:authorize="hasRole('ROLE_USER')" >
+          <form   class="form" th:object="${comment}"    th:action="@{/CommentSave(id=${post.id})}"   method="POST">
+              <div class="form-group"   >
+                <label for="exampleInputEmail1"  th:text="${user_name}">ርእይቶኻ ኣብ ታሕቲ ጸሓፍ ?</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" th:field="*{content}" placeholder="ርእይቶኻ ?? " required=""/>
+                
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+      </div>
+
+
+
+       </div>
+
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+        
+     
+ 
+
+    </body>
+</html>

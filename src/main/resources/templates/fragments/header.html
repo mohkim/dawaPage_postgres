@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" 
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+    <head>
+        <title>header section</title>
+    </head>
+    <body>
+
+        <div th:fragment="header">   
+            <!--       start of navbar -->
+
+             
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary   fixed-top ">
+                <div class="container">
+
+          
+                <a class="navbar-brand  " href="/">ብርሃን መገዲ</a>
+                <button
+                    class="navbar-toggler "
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class=" nabMenu collapse navbar-collapse    " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto    ">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item dropdown"  sec:authorize="hasRole('ROLE_ADMIN')" >
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                >
+                                ምምሕዳር
+                            </a>
+                            <div class="dropdown-menu  bg-light" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/topic">ኣርእስታት</a>
+                                <a class="dropdown-item" href="/user">ኣባላት</a>
+
+                                <a class="dropdown-item" href="/postAdminPage">ጽሑፋት</a>
+                                    <a class="dropdown-item" href="/password">ፓስዎርድ ምቅያር</a>
+                                    <a class="dropdown-item" href="/messageInbox">ርእይቶ ናብ ምምሕዳር </a>
+                                     <a class="dropdown-item" href="/registerform"  >ሓዲሽ ኣባል ምምዝጋብ</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown"  sec:authorize="hasRole('ROLE_USER')">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown1"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                >
+                                ኣባል 
+                            </a>
+                            <div class="dropdown-menu  bg-light" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/address">ኣድራሻ ንምቅያር</a>
+                                <a class="dropdown-item" href="/password"></a>
+<!--                                <a class="dropdown-item" href="/activity">ንጥፈታት</a>-->
+
+                                <a class="dropdown-item" href="/postChoice">ሓዲሽ ጽሑፍ</a>
+                                <a class="dropdown-item" href="/password">ፓስዎርድ ምቅያር</a>
+                                    <a class="dropdown-item" href="/contact2">መልእኽቲ ናብ ምምሕዳር</a>
+                                    <a class="dropdown-item" href="/registerform"  >ሓዲሽ ኣባል ምምዝጋብ</a>
+                            </div>
+                        </li>
+
+
+                        <li class="nav-item"><a class="nav-link" href="/contact">ንክትረኽቡና</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">ብዛዕባና</a></li>
+                              <li class="nav-item"><a class="nav-link" href="/login"  sec:authorize="!isAuthenticated()">LogIn</a></li>
+                        <li class="nav-item"   sec:authorize="isAuthenticated()">
+                            <form  th:action="@{/logout}"  method="POST">
+                       
+                                 <button type="submit" class="btn btn-link  text-dark">LogOut</button>   
+                            </form>
+                        
+                        </li>
+
+
+
+                    </ul>
+                </div>
+                  </div>
+            </nav>
+
+
+           </div>
+
+
+    </body>
+</html>

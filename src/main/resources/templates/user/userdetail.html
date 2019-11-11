@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+
+<section  style="min-height: 100% "  >
+            <div  class="container pt-5" >
+
+
+                <div class=" row justify-content-md-center">
+                    <div class="col-lg-6  ">
+                        <!-- /form user info -->
+
+                        <div class="card card-outline-secondary">
+                            <div class="card-header   ">
+                                <h4 class="mb-0" style="text-align: center">
+                                    Personal Information
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <form
+                                    class="form"
+                                    role="form"
+                                    autocomplete="off"
+                                    th:action="@{/usersave}"
+
+                                    method="POST"
+                                    >
+                                    <!-- id -->
+                                    <div class="  row  d-none">
+                                        <label class="col    "> User Id :</label>
+                                        <input class="form-control" type="text"    th:field="${user.user_id}"/> 
+                                    </div>
+
+                                    <!-- name -->
+                                    <div class="  row">
+                                        <label class="col    "> Name :</label>
+                                        <label class="col    "  th:text="${user.first_name}"> User Id data</label>
+                                    </div>
+                                    <!-- Father Name-->
+                                    <div class="  row">
+                                        <label class="col    "> Father's Name :</label>
+                                        <label class="col    " th:text="${user.second_name}"> User Id data</label>
+                                    </div>
+                                    <!-- Last Name -->
+                                    <div class="  row">
+                                        <label class="col    ">Last Name :</label>
+                                        <label class="col    " th:text="${user.last_name}"> User Id data</label>
+                                    </div>
+                                    <!-- Gender -->
+                                    <div class="  row">
+                                        <label class="col    ">Gender :</label>
+                                        <label class="col    " th:text="${user.gender}"> User Id data</label>
+                                    </div>
+                                    <!-- break -->
+                                    <div class="card-header  ">
+                                        <h4 class="   " style="text-align: center">
+                                            Contact Information
+                                        </h4>
+                                    </div>
+                                    <!-- id -->
+                                    <div class="  row">
+                                        <label class="col    "> Country :</label>
+                                        <label class="col    " th:text="${user.country}" > User Id data</label>
+                                    </div>
+                                    <!-- id -->
+                                    <div class="  row">
+                                        <label class="col    ">City:</label>
+                                        <label class="col    " th:text="${user.town}"> User Id data</label>
+                                    </div>
+                                    <!-- id -->
+                                    <div class="  row">
+                                        <label class="col    "> Email :</label>
+                                        <label class="col    " th:text="${user.email}" > User Id data</label>
+                                    </div>
+                                    <!-- Phone -->
+                                    <div class="  row">
+                                        <label class="col    ">Phone Number:</label>
+                                        <label class="col    " th:text="${user.phone_Number}" > User Id data</label>
+                                    </div>
+                                    <!-- break -->
+                                    <div class="card-header  ">
+                                        <h4 class="   " style="text-align: center">
+                                            Administration Setting
+                                        </h4>
+                                    </div>
+                                    <!-- Note -->
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">
+                                            Note </label>
+                                        <div class="col-lg-9">
+                                            <textarea
+                                                rows="6"
+                                                name="message2"
+                                                id="message2"
+                                                class="form-control"
+                                                required=""
+                                                th:field="*{user.extranote}"
+                                                ></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!--                checkbox -->
+
+
+                                    <!--               Disable  User-->
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">
+                                            User Active  </label>
+                                        <div class="col-lg-9">
+                                            <input type="checkbox" class="form-check-input" th:field="${user.userActive}"/>
+                                        </div>
+                                    </div>
+                                    <!-- buttons -->
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-lg-3 col-form-label form-control-label"
+                                            ></label>
+                                        <div class="col-lg-9">
+                                            <input
+                                                type="reset"
+                                                class="btn btn-secondary"
+                                                value="Cancel"
+                                                />
+                                            <input
+                                                type="submit"
+                                                class="btn btn-primary"
+                                                value="Save Changes"
+                                                />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+
+
+    </body>
+</html>

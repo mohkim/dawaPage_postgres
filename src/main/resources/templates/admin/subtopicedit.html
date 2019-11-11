@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+        <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+
+
+
+                <div class=" row justify-content-md-center">
+                    <div class="col-lg-6  ">
+                        <!-- /form user info -->
+                        <div   class="alert alert-info"  th:if="${exist}">
+                            <p class="text text-center"> Sub Topic Name all Ready  Used </p>
+                        </div>
+                        <div class="card card-outline-secondary">
+                            <div class="card-header">
+
+                                <h3 class="mb-0" style="text-align: center"> Sub Topic Create/Edit</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form" role="form" autocomplete="off"   th:action="@{/subtopicsave(sid=${parrentTopic})}"     th:object="${subtopic}"  method="POST" >
+
+                                    <!-- id -->
+                                    <div class="form-group row   d-none">
+                                        <label class="col-lg-3 col-form-label form-control-label">
+                                            Sub  Topic Id</label>
+                                        <div class="col-lg-9 ">
+                                            <input class="form-control" type="text" th:field="*{id}" />
+                                        </div>
+                                    </div>
+                                    <!-- name -->
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label"
+                                               >Sub Topic name</label
+                                        >
+                                        <div class="col-lg-9">
+                                            <input class="form-control" type="text" th:field="*{name}" />
+                                            <div  class="text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>    
+                                        </div>
+                                    </div>
+                                    <!-- Description -->
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label"
+                                               >Description</label
+                                        >
+                                        <div class="col-lg-9">
+                                            <textarea
+                                                rows="6"
+                                                name="message2"
+                                                id="message2"
+                                                class="form-control"
+                                                required=""
+                                                th:field="*{description}"
+                                                ></textarea>
+                                            <div  class="text text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>    
+                                        </div>
+                                    </div>
+
+                                    <!-- buttons -->
+                                    <div class="form-group row">
+                                        <label
+                                            class="col-lg-3 col-form-label form-control-label"
+                                            ></label>
+                                        <div class="col-lg-9">
+                                            <input
+                                                type="reset"
+                                                class="btn btn-secondary"
+                                                value="Cancel"
+                                                />
+                                            <input
+                                                type="submit"
+                                                class="btn btn-primary"
+                                                value="Save Changes"
+                                                />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+
+
+    </body>
+</html>

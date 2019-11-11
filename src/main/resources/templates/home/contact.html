@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+
+        <!--        console start-->
+        <section class="pt-5  " >
+            <div class="container">
+                <div class="row  ">
+
+                    <!-- Contact Details Column -->
+                    <div class="col-lg-4 mb-4 pt-5  offset-4">
+                        <div class="h1 text text-center  pt-5  pb-5">Contact Details</div>
+                        <p>
+                            3481 Melrose Place
+                            <br>Beverly Hills, CA 90210
+                            </br>
+                        </p>
+                        <p>
+                            <abbr title="Phone">P</abbr>: (123) 456-7890
+                        </p>
+                        <p>
+                            <abbr title="Email">E</abbr>:
+                            <a href="mailto:name@example.com">name@example.com
+                            </a>
+                        </p>
+                        <p>
+                            <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+                        </p>
+                    </div>
+                </div>
+ </div>
+
+        </section>
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+    </body>
+</html>

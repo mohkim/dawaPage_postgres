@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+     <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+        
+
+ 
+
+            <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+        
+        
+        
+        
+        <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+  
+            <a class="waves-effect waves-light btn modal-trigger" th:href="@{topicnew}"  >ሓዲሽ ኣርእስቲ</a>
+               <table class="table bordered"   >
+                <thead>
+                    <tr>
+<!--                        <th>id</th>-->
+                        <th>ስም ኣርእስቲ</th>
+                        <th>ኣማሓይሽ</th>
+                        <th>ደምስ</th>
+                        <th>ናብ ንኡስ ኣርእስቲ ቀጽል</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  th:each="topic:${data}"> 
+<!--                        <td   th:text="${topic.id}" >1</td>-->
+                        <td th:text="${topic.name}"><h5>ሓዲስ</h5></td>
+                        <td ><a class="wwaves-effect waves-light waves-teal btn-floating modal-trigger "    id="ebtn"  th:href="@{topicedit(id=${topic.id})}"   ><i class="material-icons ">edit</i></a></td>   <!--th:href="@{topicfind/(id=${topic.id})}"-->
+                        <td><a class="wwaves-effect waves-light waves-teal red btn-floating modal-trigger"  th:href="@{topicdelete(id=${topic.id})}" ><i class="material-icons ">delete</i></a></td>
+                  <td><a class="wwaves-effect waves-light waves-teal red btn-floating modal-trigger"  th:href="@{subtopic(id=${topic.id})}" ><i class="material-icons ">GO</i></a></td>
+                    </tr>
+                    <!--       <td >  <a   th:href="@{/addTask(email=${user.email})}" class="waves-effect waves-light btn">Add Task</a></td>-->
+
+
+                </tbody>
+
+
+            </table>
+
+            </div>
+        
+        </section>
+
+          
+          
+            
+                <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+        
+     
+
+
+     
+
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+        <div  class="container" >
+            <div   th:include="fragments/header::header" ></div>
+            <!-- here starts body parts-->
+            <div style="height: 10px;">
+
+            </div>
+            <section  class=" "  style="padding: 50px 10px ; background-color:#fbfaf0 ">
+                <h1  class="" style="text-align: center ; font-size: 36px">   ቤት ንባብ </h1>
+                <div>
+                    <p  style="padding-top: 50px;text-align: center">
+                        ንባብ ምንጪ  ፍልጠት ስለዝኾነ ካብ ኣብዚ  ታሕቲ ተዘርዚሩ ዘሎ ኣርእስቲ ብምምራጽ ኣንብቡ ፥
+                    </p>
+                </div>
+                <div  class="row"   >
+                    <div  class=" col-sm-12  col-lg-2  offset-1"  th:each="topic:${topicList}"   style="padding-top: 10px"  >
+                        <div class="card" style="padding: 5px">
+                            <div class="card-body"  style="background-color:#fbfaf0 ">
+
+                                <a    th:href="@{/showsub(id=${topic.id})}"   th:text="${topic.name}"  class="card-link" >ምረጽ</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class=" col-sm-12 col-lg-2  offset-1"  th:each="topic:${topicList}"   style="padding-top: 10px"  >
+
+
+
+                    </div>
+                </div>
+            </section>
+            <div style="height: 10px;">
+
+            </div>
+
+            <div     style="padding-top:50px; background-color:#fbfaf0 ; height: 100%">
+
+                <div>
+                    <div class="row">
+
+                        <div class="col-sm">
+                            <h1>Latest Post</h1>
+
+                            <table class=" "   border="0">
+
+                                <tbody>
+                                    <tr  th:each="post:${LatestPostList}"> 
+                                        <td    ><a class="wwaves-effect waves-light waves-teal btn-floating modal-trigger "   th:text="${post.postTopic}"  th:href="@{/showPostDetail(id=${post.id})}"    ></a></td>
+
+                                        
+
+
+                                    </tr>
+
+
+
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                        <div class="col-sm">
+                            <h1>Most Read Article</h1>
+
+                            <table  border="0" >
+
+                                <tbody>
+                                    <tr  th:each="post:${mostReadList}"> 
+                                          <td    ><a class="wwaves-effect waves-light waves-teal btn-floating modal-trigger "   th:text="${post.postTopic}"  th:href="@{/showPostDetail(id=${post.id})}"    ></a></td>
+
+
+                                    </tr>
+
+
+
+                                </tbody>
+
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+          
+
+
+
+        </div>
+
+  <!-- ends here -->
+            <div   th:include="fragments/footer::footer" ></div>
+
+
+
+
+        <!--JavaScript at end of body for optimized loading-->
+
+
+      
+
+    </body>
+</html>

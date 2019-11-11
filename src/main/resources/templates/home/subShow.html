@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+      
+
+            <div   th:include="fragments/header::header" ></div>
+
+            <section  style="height: 100% "  >
+                <div  class="container pt-5" >
+
+                    <h1  class="" style="text-align: center ; font-size: 36px"  th:text="${topic.name}" >   ቤት ንባብ </h1>
+                    <div>
+                        <p  style="padding-top: 50px;text-align: center"   th:text="${topic.description}">
+                            ንባብ ምንጪ  ፍልጠት ስለዝኾነ ካብ ኣብዚ  ታሕቲ ተዘርዚሩ ዘሎ ኣርእስቲ ብምምራጽ ኣንብቡ ፥
+                        </p>
+                    </div>
+                    <div  class="row"   >
+                    <div  class="  col-md-2 "  th:each="subtopic:${subtopicList}"    style="padding-top: 10px"   >
+
+
+
+                        <a   th:href="@{/showPost(id=${subtopic.id})}"  th:text="${subtopic.name}"  class="btn btn-outline-primary btn-lg  "  >ምረጽ</a>
+
+                    </div>
+                </div>
+
+
+                </div>
+
+            </section> 
+
+
+
+
+
+
+
+
+            <!-- ends here -->
+            <div   th:include="fragments/footer::footer" ></div>
+            <!--JavaScript at end of body for optimized loading-->
+
+     
+
+
+    </body>
+</html>

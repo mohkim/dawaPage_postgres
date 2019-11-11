@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+
+        <!--            library  section  for different reading catagory -->
+        <section    >
+            <div  class="container pb-5">
+       
+                <div class="d-flex h1  justify-content-center text-uppercase tex"><u>  Post Managment Reports </u></div>
+                 
+               <div class="row  pt-5">
+                   
+                
+                      <div class="col-md-4 p-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title h3    d-flex justify-content-center  pb-3"><u>User Topic Relation </u></h5>
+                           
+                                <p class="card-text"> ኣብዚ ጸብጻብ ኣብ መንጎ ጸሓፍትን ጽሑፍን ዘሎ ዝምድና ንምዕዛብ ወይ መን ኣበየናይ ኣርእስቲ ይጽሕፍ ከምዘሎ ንምዕዛብ  </p>
+                             
+                                <a th:href="@{usertopic}" class="btn btn-primary">ንምቅጻል </a>
+                              </div>
+                            </div>
+                       </div>
+
+                    <div class="col-md-4 p-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title h3    d-flex justify-content-center  pb-3"><u>Latest Topics </u></h5>
+                           
+                                <p class="card-text"> ኣብዚ ጸብጻብ ኣብዚ ቀረባ ግዜ ዝተጻሕፉ ጽሑፋት ንምዕዛብ </p>
+                             
+                                <a href="#" class="btn btn-primary">ንምቅጻል </a>
+                              </div>
+                            </div>
+                       </div>
+
+                      <div class="col-md-4 p-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title h4    d-flex justify-content-center  pb-3"><u>Latest Updated topics </u></h5>
+                           
+                                <p class="card-text"> ኣብዚ ጸብጻብ ኣብዚ ቀረባ ግዜ ዝተመሓየሹ ጽሑፋት ንምዕዛብ   </p>
+                             
+                                <a href="#" class="btn btn-primary">ንምቅጻል </a>
+                              </div>
+                            </div>
+                       </div>
+
+                        <div class="col-md-4 p-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title h3    d-flex justify-content-center  pb-3"><u>User Performance </u></h5>
+                           
+                                <p class="card-text"> መዕቀኒ ናይ ጸሓፍቲ ንጥፈታት </p>
+                             
+                                <a href="#" class="btn btn-primary">ንምቅጻል </a>
+                              </div>
+                            </div>
+                       </div>
+
+
+                  </div>
+ 
+
+            </div>
+        
+        </section>
+
+        <!--      end of       library  section  for different reading catagory -->
+        <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+
+
+        <!--JavaScript at end of body for optimized loading-->
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+plugins {
+	id 'org.springframework.boot' version '2.0.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+ 
+}
+
+group = 'com.dawa'
+version = '1'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    
+  
+
+    
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+ 
+    compile group: 'org.webjars', name: 'bootstrap', version: '4.1.0'
+    compile group: 'org.webjars', name: 'jquery', version: '3.3.1-1'
+    compile group: 'org.webjars', name: 'ckeditor', version: '4.4.7'
+    compile group: 'org.webjars', name: 'bootstrap-datepicker', version: '1.7.1'
+       
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
+    
+//    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
+
+   
+    runtime('org.springframework.boot:spring-boot-devtools')
+     runtimeOnly 'org.postgresql:postgresql'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+       testCompile('org.springframework.security:spring-security-test')
+       
+    
+
+    
+}
+
+//
+//plugins {
+//	id 'org.springframework.boot' version '2.2.0.5.RELEASE'
+//	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+//	id 'java'
+//}
+//
+//group = 'com.trdawa'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//
+//repositories {
+//	mavenCentral()
+//}
+//
+//dependencies {
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	runtimeOnly 'org.postgresql:postgresql'
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components"> 
+    
+     
+    
+    </head>
+
+
+    
+    <body>
+       
+
+
+            <div   th:include="fragments/header::header" ></div>
+            <!-- here starts body parts-->
+       
+                <section  style="min-height: 100% "  >
+            <div  class="container pt-5" >
+
+                    
+                            <h3 class="mb-0" style="text-align: center"> New Post/ Edit Post</h3>
+                       
+                     
+                            <form class="form" role="form"   th:action="@{/postsave}"   th:object="${post}"  method="POST" >
+                                <!-- id -->
+                                <div class="form-group row  d-none   ">
+                                    <label class="col-lg-3 col-form-label form-control-label">
+                                        Post Id</label
+                                    >
+                                    <div class="col-lg-9">
+                                        <input class="form-control " type="text" th:field="*{id}" />
+                                    </div>
+                                </div>
+                                <!--                                            sub topic id-->
+                                <div class="form-group row  d-none   ">
+                                    <label class="col-lg-3 col-form-label form-control-label">
+                                        sub  topic</label
+                                    >
+                                    <div class="col-lg-9">
+                                        <input class="form-control " type="text" th:field="*{sub_topic.id}" />
+                                    </div>
+                                </div>
+                                <!--                                  post topic-->
+                                <div class="form-group row ">
+                                    <label class="col-lg-3 col-form-label form-control-label">
+                                        Post Topic</label
+                                    >
+                                    <div class="col-lg-9">
+                                        <input class="form-control " type="text" th:field="*{postTopic}" />
+                                    </div>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"
+                                           >Post Content</label
+                                    >
+                                    <div class="col-lg-12">
+                                      <textarea name="editor1" id="editor1" rows="10" cols="80"  th:field="*{post_content}" >
+                                     
+                                    </textarea>
+                                  <script>
+                                    
+                                        CKEDITOR.replace( 'editor1' );
+                                        CKEDITOR.editorConfig = function( config ) {
+	config.toolbarGroups = [
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		{ name: 'forms', groups: [ 'forms' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'others', groups: [ 'others' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'styles', groups: [ 'styles' ] },
+		{ name: 'colors', groups: [ 'colors' ] },
+		{ name: 'about', groups: [ 'about' ] }
+	];
+
+	config.removeButtons = 'Underline,Subscript,Superscript,Image,Link,Unlink,Anchor';
+};
+                                    </script>  
+
+                                    </div>
+                                </div>
+
+                                <!-- buttons -->
+                                <div class="form-group row">
+                                    <label
+                                        class="col-lg-3 col-form-label form-control-label"
+                                        ></label>
+                                    <div class="col-lg-9">
+                                        <input
+                                            type="reset"
+                                            class="btn btn-secondary"
+                                            value="Cancel"
+                                            />
+                                        <input
+                                            type="submit"
+                                            class="btn btn-primary"
+                                            value="Save Changes"
+                                            />
+                                    </div>
+                                </div>
+                            </form>
+ 
+
+            </div>
+        
+        </section>
+
+
+
+                       
+                
+             
+         
+
+
+
+            <!-- ends here -->
+            <div   th:include="fragments/footer::footer" ></div>
+
+      
+ 
+
+    </body>
+</html>

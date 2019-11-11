@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+ 
+
+            <div   th:include="fragments/header::header" ></div>
+            
+            
+            
+            
+            <section  style="height: 100% "  >
+            <div  class="container pt-5" >
+
+                   <div    >
+
+
+                    <h1   th:text="${subtopic.name}"  style="text-align: center">  title </h1>
+                    <div  style="padding-top: 10px">   
+                        <p  th:text="${subtopic.description}">
+                                </p>
+                    </div>
+                </div>
+
+                <div   style="padding-top: 10px">
+
+
+                    <table class="table table-borderless"   >
+                        <tbody>
+                            <tr  style="border: #ffffff"  th:each="post:${postList}"> 
+                                <td><a  th:text="${post.postTopic}"  th:href="@{/showPostDetail(id=${post.id})}"></a>  </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+ 
+
+            </div>
+        
+        </section>
+            
+ 
+             
+
+            <!-- ends here -->
+            <div   th:include="fragments/footer::footer" ></div>
+ 
+
+ 
+
+    </body>
+</html>
