@@ -29,7 +29,7 @@ public class Topic {
     @NotEmpty()
     private String name;
 
-    @Column(length = 10000)
+    @Column(length = 10485760)
     @NotEmpty()
     private String description;
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      >
+     lang="am">
       <head  th:include="fragments/components::components">   </head>
 
 
@@ -13,13 +13,13 @@
            <div   th:include="fragments/header::header" ></div>
         <!-- here starts body parts--> 
             
-        <section  style="height: 100% "  >
+        <section  style="  "  >
             <div  class="container pt-5" >
 
  
 
         <div class=" row justify-content-md-center">
-            <div class="col-lg-6  ">
+            <div class="   ">
                 <!-- /form user info -->
 
                 <div   class="alert alert-info"  th:if="${exist}">
@@ -34,19 +34,19 @@
                         <form class="form" role="form" autocomplete="off"  th:action="@{/topicsave}"   th:object="${topic}"  method="POST" >
                             <!-- id -->
                             <div class="form-group row  d-none   ">
-                                <label class="col-lg-3 col-form-label form-control-label">
+                                <label class="  col-form-label form-control-label">
                                     Topic Id</label
                                 >
-                                <div class="col-lg-9">
+                                <div class=" ">
                                     <input class="form-control " type="text" th:field="*{id}" />
                                 </div>
                             </div>
                             <!-- name -->
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"
+                                <label class="  col-form-label form-control-label"
                                        >Topic name</label
                                 >
-                                <div class="col-lg-9">
+                                <div class=" ">
                                     <input class="form-control" type="text" th:field="*{name}" />
                                     <div  class="text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>   
                                 </div>
@@ -56,25 +56,31 @@
                                 <label class="col-lg-3 col-form-label form-control-label"
                                        >Description</label
                                 >
-                                <div class="col-lg-9">
-                                    <textarea
-                                        rows="6"
-                                        name="message2"
-                                        id="message2"
-                                        class="form-control"
-                                        required=""
-                                        th:field="*{description}"
-                                        ></textarea>
-                                    <div  class="text text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>   
-                                </div>
+                                 <div class=" ">
+<!--                                            <textarea
+                                                rows="6"
+                                                name="message2"
+                                                id="message2"
+                                                class="form-control"
+                                                required=""
+                                                th:field="*{description}"
+                                                ></textarea>
+                                            -->
+                                            
+                                            <textarea name="editor1" id="editor1" rows="10" cols="80"  th:field="*{description}"  required="">
+                                     
+                                    </textarea>  
+                                            
+                                            <div  class="text text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>    
+                                        </div>
                             </div>
 
                             <!-- buttons -->
                             <div class="form-group row">
                                 <label
-                                    class="col-lg-3 col-form-label form-control-label"
+                                    class="  col-form-label form-control-label"
                                     ></label>
-                                <div class="col-lg-9">
+                                <div class=" ">
                                     <input
                                         type="reset"
                                         class="btn btn-secondary"
@@ -106,7 +112,30 @@
         <!-- ends here -->
         <div   th:include="fragments/footer::footer" ></div>
         
- 
+   <script>
+                                    
+                                        CKEDITOR.replace( 'editor1' );
+                                        CKEDITOR.editorConfig = function( config ) {
+	config.toolbarGroups = [
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		{ name: 'forms', groups: [ 'forms' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'others', groups: [ 'others' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'styles', groups: [ 'styles' ] },
+		{ name: 'colors', groups: [ 'colors' ] },
+		{ name: 'about', groups: [ 'about' ] }
+	];
+
+	config.removeButtons = 'Underline,Subscript,Superscript,Image,Link,Unlink,Anchor';
+};
+                                    </script>  
        
 
     </body>

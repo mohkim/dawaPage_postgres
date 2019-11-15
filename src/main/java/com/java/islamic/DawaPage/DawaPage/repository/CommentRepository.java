@@ -9,6 +9,7 @@ import com.java.islamic.DawaPage.DawaPage.entity.Comment;
 import com.java.islamic.DawaPage.DawaPage.entity.Post;
 import com.java.islamic.DawaPage.DawaPage.entity.Users;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,14 +18,15 @@ import org.springframework.stereotype.Repository;
  *
  * @author KEMAL
  */
- 
+ @Repository
+@Transactional
 public  interface CommentRepository extends  JpaRepository<Comment, Long> {
     
     
-     @Query(value="SELECT * FROM dawa.comment  where  fk_post=?",nativeQuery = true)
+     @Query(value="SELECT * FROM comment  where  fk_post=?",nativeQuery = true)
     public  List<Comment>    findCommentListbyPost(Long id);
     
-     @Query(value="SELECT * FROM dawa.comment  where  fk_user=? and  content=?",nativeQuery = true)
+     @Query(value="SELECT * FROM comment  where  fk_user=? and  content=?",nativeQuery = true)
     public  Comment    findbyUserAndComment(Long id,String content);
     
     

@@ -86,7 +86,7 @@ public class SubTopicController {
             model.addAttribute("parrentTopic", sid);
             return "admin/subtopicedit";
             
-        } else if (subTopicService.subtopicExist(subtopic.getName())) {
+        } else if (subTopicService.subtopicExist(subtopic.getName())&& subtopic.getId()==null) {
 
             model.addAttribute("subtopic", subtopic);
             model.addAttribute("parrentTopic", sid);

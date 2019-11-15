@@ -28,6 +28,8 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    
+    private  String  topic ;
     private String content;
 
     @OneToOne
@@ -55,6 +57,14 @@ public class Message {
 
     public String getContent() {
         return content;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public void setContent(String content) {

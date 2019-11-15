@@ -8,6 +8,7 @@ package com.java.islamic.DawaPage.DawaPage.repository;
 import com.java.islamic.DawaPage.DawaPage.entity.Post;
 import com.java.islamic.DawaPage.DawaPage.entity.Sub_topic;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Repository;
  *
  * @author KEMAL
  */
- 
+ @Repository
+@Transactional
 public  interface PostRepository extends  JpaRepository<Post, Long> {
     
      @Query("SELECT p FROM Post p  where  p.sub_topic=?1")

@@ -75,7 +75,7 @@ public class TopicController {
 
         if (bindingResult.hasErrors()) {
             return "admin/topicedit";
-        } else if (topicService.topicExist(topic.getName())) {
+        } else if (topicService.topicExist(topic.getName()) && topic.getId()==null) {
             model.addAttribute("exist", true);
             return "admin/topicedit";
         } else {

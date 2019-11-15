@@ -6,6 +6,7 @@
 package com.java.islamic.DawaPage.DawaPage.repository;
 
 import com.java.islamic.DawaPage.DawaPage.entity.Topic;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Repository;
  *
  * @author KEMAL
  */
-
+@Repository
+@Transactional
 public  interface TopicRepository extends  JpaRepository<Topic, Long> {
  
     

@@ -1,11 +1,9 @@
 package com.java.islamic.DawaPage.DawaPage.entity;
 
-import java.sql.Blob;
-import java.sql.Clob;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +13,8 @@ import javax.persistence.Lob;
 
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Max;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  *
@@ -41,9 +37,9 @@ public class Post {
 
     private String postTopic;
 
-    @Lob
+    @Column(length = 10485760)
     private String post_content;
-    @OneToMany ( mappedBy = "post")
+    @OneToMany(mappedBy = "post")
     private List<Comment> comment_list = new ArrayList<Comment>();
 
     @UpdateTimestamp
@@ -140,7 +136,5 @@ public class Post {
     public String toString() {
         return "Post{" + "id=" + id + ", postTopic=" + postTopic + ", comment_list=" + comment_list.size() + '}';
     }
-
-    
 
 }

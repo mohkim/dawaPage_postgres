@@ -10,6 +10,7 @@ import com.java.islamic.DawaPage.DawaPage.repository.PostRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,7 @@ public class PostService {
     @Autowired
     public SubTopicService subTopicService;
 
+   
     public void savePost(Post post) {
         postRepository.save(post);
     }

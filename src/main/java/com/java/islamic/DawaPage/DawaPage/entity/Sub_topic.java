@@ -34,7 +34,7 @@ public class Sub_topic {
     @NotEmpty
     private String name;
     @NotEmpty()
-    @Column(length = 10000)
+    @Column(length = 10485760)
     private String description;
 
    
