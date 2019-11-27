@@ -16,7 +16,19 @@
             <section  style="height: 100% "  >
             <div  class="container pt-5" >
 
- 
+   <div  class="h5">
+                    <p>
+                        <br/>
+                        <br/>
+                       ኣብዚ ተዘርዚሮም ዘለዉ ኣባላት ኮይኖም  <br/>
+                       Detail = ምሉእ ውልቃዊ ሓበሬታ ናይ ኣባል ንምዕዛብ<br/>
+                       Edit User = ን ኣባል ንኡስ ኣርእስቲ ዝጽሕፈሉ ንምሃብ የገልግል<br/>
+                         <br/>
+                        <br/>
+                       
+                    </p>
+                    
+                </div>
 
 
 
@@ -24,7 +36,7 @@
             <table class="table "   >
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th class="d-none">id</th>
                         <th>First Name</th>
                         <th>Father's Name</th>
                         <th>last Name</th>
@@ -38,7 +50,7 @@
                 </thead>
                 <tbody>
                     <tr  th:each="user:${data}"> 
-                        <td   th:text="${user.user_id}" >1</td>
+                        <td class="d-none"  th:text="${user.user_id}" >1</td>
                         <td th:text="${user.first_name}"><h5>ሓዲስ</h5></td>
                         <td th:text="${user.second_name}"><h5>ሓዲስ</h5></td>
                         <td th:text="${user.last_name}"><h5>ሓዲስ</h5></td>
@@ -63,7 +75,7 @@
         </section>
         
         
-
+        <div></div>
  
 
  

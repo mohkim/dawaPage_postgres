@@ -38,7 +38,7 @@ dependencies {
        
     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
     
-//    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
+     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
 
    
     runtime('org.springframework.boot:spring-boot-devtools')

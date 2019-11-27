@@ -17,18 +17,27 @@
         
         
         
-        <section  style="height: 100% "  >
+        <section    >
             <div  class="container pt-5" >
-
+                <div>
+                    <p  class="h5">
+                        <br/>
+                       <br/>
+                    ኣብዚ ታሕቲ  ኣርእስታት ንምምሕያሽ ይኹን ምድምሳስ ይከኣል ፥ ኣርእስቲ ኣብ ትሕቲኡ ንኡስ ኣርእስቲ ኣለዎ ፥ 
+                    ኣብዚ ትገብሮ ንብምልኡ ወብሳይት ስለ ዝትንክፍ ብጥንቃቀን ኣፍልጦን ክኸውን ኣለዎ ።
+                    <br/>
+                       <br/>
+                     </p>
+                </div>
   
-            <a class="waves-effect waves-light btn modal-trigger" th:href="@{topicnew}"  >ሓዲሽ ኣርእስቲ</a>
+            <a class="waves-effect waves-light btn btn-primary modal-trigger" th:href="@{topicnew}"  >ሓዲሽ ኣርእስቲ</a>
                <table class="table bordered"   >
                 <thead>
                     <tr>
 <!--                        <th>id</th>-->
                         <th>ስም ኣርእስቲ</th>
                         <th>ኣማሓይሽ</th>
-                        <th>ደምስ</th>
+                        <th>ደምስስ</th>
                         <th>ናብ ንኡስ ኣርእስቲ ቀጽል</th>
                     </tr>
                 </thead>
@@ -38,7 +47,7 @@
                         <td th:text="${topic.name}"><h5>ሓዲስ</h5></td>
                         <td ><a class="wwaves-effect waves-light waves-teal btn-floating modal-trigger "    id="ebtn"  th:href="@{topicedit(id=${topic.id})}"   ><i class="material-icons ">edit</i></a></td>   <!--th:href="@{topicfind/(id=${topic.id})}"-->
                         <td><a class="wwaves-effect waves-light waves-teal red btn-floating modal-trigger"  th:href="@{topicdelete(id=${topic.id})}" ><i class="material-icons ">delete</i></a></td>
-                  <td><a class="wwaves-effect waves-light waves-teal red btn-floating modal-trigger"  th:href="@{subtopic(id=${topic.id})}" ><i class="material-icons ">GO</i></a></td>
+                  <td><a class="wwaves-effect waves-light waves-teal red btn-floating modal-trigger"  th:href="@{subtopic(id=${topic.id})}" ><i class="material-icons ">send</i></a></td>
                     </tr>
                     <!--       <td >  <a   th:href="@{/addTask(email=${user.email})}" class="waves-effect waves-light btn">Add Task</a></td>-->
 

@@ -20,7 +20,7 @@
 
                             <th>User Name</th>
                             <th>Date</th>
-                            <th>Message</th>
+                            <th>topic</th>
                             <th>View</th>
                             <th>Delete</th>
 
@@ -30,8 +30,8 @@
                         <tr  th:each="msg:${allmessages}"> 
                             <td  class="d-none" th:text="${msg.id}" >1</td>
                             <td   th:text="${msg.user.first_name}" >1</td>
-                            <td th:text="${msg.createdDate}"><h5>ሓዲስ</h5></td>
-                            <td th:text="${msg.content}"><h5>ሓዲስ</h5></td>
+                            <td th:text="${#temporals.format(msg.createdDate, 'dd-MMM-yyyy')}" ><h5>ሓዲስ</h5></td>
+                            <td th:text="${msg.topic}"><h5>ሓዲስ</h5></td>
 
                             <td>  <a      th:href="@{/messageDetail(id=${msg.id})}"     class="btn btn-link ebtn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >   <!--    th:href="@{/messageDetail(id=${msg.id})}"-->
                                     view
@@ -145,19 +145,7 @@
 
                     // modal.find('.modal-body input').val(recipient)
                 })
-
-
-
-
-
-
-
-
-
-
-
-
-            });
+        });
 
         </script>
 

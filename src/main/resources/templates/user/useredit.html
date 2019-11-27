@@ -15,6 +15,18 @@
 
     <section  style="min-height: 100% "  >
             <div  class="container pt-5" >
+                <div  class="h5">
+                    <p>
+                        <br/>
+                        <br/>
+                       ኣብዚ ቦታ ን ኣባላት ክጽሕፍሉ ዝኽእሉ ንኡስ ኣርእስቲ ክትህቦም ትኽእል ኢኻ ።
+                         <br/>
+                        <br/>
+                       
+                    </p>
+                    
+                </div>
+              
 
    <form class="form-inline" th:action="@{/useraddtopic}"    method="POST" >
 
@@ -25,10 +37,10 @@
 
                 <div class="form-group row">
                     <div class="row">
-                        <div class="col-4">
-                            <label class="  form-control-label">Select Topic</label>
+                        <div class="col-sm-4">
+                            <label class="  form-control-label ">ንኡስ ኣርእሲት ምረጽ  </label>
                         </div>
-                        <div class="col-4">
+                      <div class="col-sm-4">
                             <select class="form-control" th:field="${userTopicEdit.subTopicid}" id="exampleFormControlSelect1">  
 
                                 <option th:each="subtopic : ${allSubTopic}" style="font-size: 16"
@@ -36,7 +48,7 @@
                                         th:utext="${subtopic.topic.name}+'--'+${subtopic.name}"/>
                             </select>
                         </div>
-                        <div class="col-4">
+                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-primary mb-2">add Sub Topic</button>
                         </div>
 

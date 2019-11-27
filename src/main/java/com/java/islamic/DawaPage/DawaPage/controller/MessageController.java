@@ -27,7 +27,7 @@ public class MessageController {
     public MessageService messageService;
     private static final Logger LOG = Logger.getLogger(HomeController.class.getName());
 
-    @GetMapping("/contact2")
+    @GetMapping("/contact2")  //  message to admin 
     public String getContactPage(Model model, Principal principal) {
         Users user = userService.findByEmail(principal.getName());
 
@@ -36,7 +36,7 @@ public class MessageController {
         return "user/contact";
     }
 
-    @GetMapping("/contact")
+    @GetMapping("/contact")   /// gest contact
     public String getContactPage() {
 
         return "home/contact";
