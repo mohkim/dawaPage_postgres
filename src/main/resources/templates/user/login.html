@@ -77,12 +77,11 @@
             <div   th:include="fragments/footer::footer" ></div>
        
 
-        <script    type="text/javascript">
+          <script    type="text/javascript">
             $(document).ready(function () {
                   
                 $("#message2").removeClass("d-none");
                 $("#message2").addClass("d-none");
-
                 $("#btnLogin").on("click", function (e) {
                     e.preventDefault();
                     var email = $("#uname1").val();
@@ -96,23 +95,13 @@
                            
                                        
                             console.log("User  Disabled ");
-
                         } else {
                             console.log("User  Enabled ");
                             $("form").trigger("submit");
                         }
                     });
-
-
-
-
-
-
-
-
                 });
             });
-
         </script>
     </body>
 </html>

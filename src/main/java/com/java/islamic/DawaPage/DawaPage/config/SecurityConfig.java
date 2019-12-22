@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(noPrevilage).permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers(adminPrevilage).hasAnyRole("ADMIN")
-                 .antMatchers("/password","/registerform").hasAnyRole("ADMIN","USER")
+                 .antMatchers("/password","/registerform","/about").hasAnyRole("ADMIN","USER")
                 .antMatchers(userPrevilage).hasRole("USER")
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/").and().logout().logoutSuccessUrl("/");

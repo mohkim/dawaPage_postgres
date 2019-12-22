@@ -6,7 +6,6 @@
     <head  th:include="fragments/components::components">  
 
 
-        <title>Dawa Page </title>
 
     </head>
 
@@ -29,12 +28,19 @@
                         <div   class="alert alert-info"  th:if="${exist}">
                             <p class="text text-center">User with this Email  already Exist ! </p>
                         </div>
-
+                        <div class="jumbotron">
+                            <p>
+                                ሓዲሽ ኣባል ክትምዝግብ ከሎኻ ኣብ ግምት ከተእትዎ ዝግበኣካ 
+                                ኣወንታዊ ኣስተዋጽኦ ኣብዚ ወብሳይት ክገብር ይኽእል ኢዩ ትብሎ እዩ ። 
+                                
+                            </p>
+                            
+                        </div>
 
 
                         <div class="card card-outline-secondary">
                             <div class="card-header">
-                                <h3 class="mb-0  text-center"> Registration Form</h3>
+                                <h3 class="mb-0  text-center"> ሓዲሽ ኣባል ምምዝጋብ ፎርም</h3>
                             </div>
                             <div class="card-body">
                                 <form class="form" role="form"  th:object="${user}"  th:action="@{/registerformSave}"  method="POST" autocomplete="off">
@@ -107,7 +113,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="pas">Password</label>
-                                                <input type="password" class="form-control" value=""   id="pas" th:field="*{password}"  required=""/>
+                                                <input type="password"  class="form-control" value=""   id="pas" th:field="*{password}"   required=""/>
                                                 <div  class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>    
                                             </div>
 
@@ -118,7 +124,7 @@
 
                                             <div class="form-group">
                                                 <label for="password2">Retype Password</label>
-                                                <input type="password" class="form-control" id="password2"  required=""/>
+                                                <input type="password" class="form-control"  id="password2"  required=""     />
 
                                             </div>
                                         </div>
