@@ -15,9 +15,9 @@ import com.java.islamic.DawaPage.DawaPage.service.SubTopicService;
 import com.java.islamic.DawaPage.DawaPage.service.UserService;
 import java.security.Principal;
 import java.util.List;
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+ 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
-    public Logger logger = LoggerFactory.getLogger(UserController.class);
+     private static final Logger LOG=LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserService userService;
 
@@ -116,7 +116,7 @@ public class UserController {
 
     @PostMapping("/usersave")
     public String SaveUser(@ModelAttribute("user") Users user) {
-        logger.info("user after -> {}", user);
+        LOG.info("user after -> {}"+ user);
         Users user2 = new Users();
         user2 = userService.getUser(user.getUser_id());
         user2.setUserActive(user.isUserActive());
@@ -125,32 +125,31 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("/registerform")
-    public String getRegistrationForm(Model model) {
-
-        model.addAttribute("user", new Users());
-
-        return "user/registerform";
-    }
-
-    @PostMapping("/registerformSave")
-    public String saveRegistrationForm(@Valid Users user, Model model, BindingResult bindingResult, Principal principal) {
-
-        if (bindingResult.hasErrors()) {
-            return "user/registerform";
-        } else if (userService.isEmailPresent(user.getEmail())) {
-            model.addAttribute("exist", true);
-            return "user/registerform";
-        }
-        Users u = userService.findByEmail(principal.getName());
-        user.setCreatedBy(u.getUser_id());  // 
-        //user.dbBithDate();          
-        userService.newUser(user);
-
-        return "user/user_success";
-
-    }
-
+//    @GetMapping("/registerform")
+//    public String getRegistrationForm(Model model) {
+//
+//        model.addAttribute("user", new Users());
+//
+//        return "user/registerform";
+//    }
+//
+//    @PostMapping("/registerformSave")
+//    public String saveRegistrationForm(@Valid Users user, Model model, BindingResult bindingResult, Principal principal) {
+//
+//        if (bindingResult.hasErrors()) {
+//            return "user/registerform";
+//        } else if (userService.isEmailPresent(user.getEmail())) {
+//            model.addAttribute("exist", true);
+//            return "user/registerform";
+//        }
+//        Users u = userService.findByEmail(principal.getName());
+//        user.setCreatedBy(u.getUser_id());  // 
+//        //user.dbBithDate();          
+//        userService.newUser(user);
+//
+//        return "user/user_success";
+//
+//    }
 //     Use  profile  Controllers -----------------------------------------------------------------
     @GetMapping("/address")
     public String getUserProfile(Model model, Principal principal) {
@@ -165,36 +164,25 @@ public class UserController {
     @PostMapping("/address/save")
     public String SaveUserAddress(@ModelAttribute("user") Users user) {
         Users user1 = userService.getUser(user.getUser_id());
-        user1.setCountry(user.getCountry());
-        user1.setTown(user.getTown());
-        user1.setPhone_Number(user.getPhone_Number());
-
         userService.save(user1);
-
         return "redirect:/";
     }
 
     @GetMapping("/password")
-    public String getUserPassword(Model model, Principal principal) {
-
-        Users user = userService.findByEmail(principal.getName());
-        user.setPassword("");
-
-        model.addAttribute("user", user);
-        model.addAttribute("password2", "");
-        model.addAttribute("error", false);
-
-        //for password setting 
-        return "user/password";
+    public String getUserPassword(Model model) {
+    model.addAttribute("user", new Users());
+         return "user/password";
     }
 
     @PostMapping("/passwordsave")
-    public String SaveUserPassword(Model model, @ModelAttribute("user") Users user, @ModelAttribute("password2") String password2) {
-
+    public String SaveUserPassword(Model model, @ModelAttribute("user") Users user, Principal principal) {
+LOG.info("Kemal Password Save Controller ");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        Users user1 = userService.getUser(user.getUser_id());
-        logger.info("new Password -- > {}", user.getPassword2());
+        Users user1 = userService.findByEmail(principal.getName());
+        LOG.info("bcrypted Password -- > {}", user1.getPassword());
+        LOG.info("new Password -- > {}"+ user.getPassword());
+        LOG.info("new Password 2 -- > {}"+user.getPassword2());
 
         // confirm if he knows the old password
         if (encoder.matches(user.getPassword(), user1.getPassword())) {
@@ -205,7 +193,6 @@ public class UserController {
         } else {
             model.addAttribute("error", true);
 
-            //for password setting 
             return "user/password";
         }
 
@@ -243,8 +230,7 @@ public class UserController {
         return "user/activity/activity";
 
     }
-    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(UserController.class.getName());
-
+   
 }
 
 class UserTopicEdit {

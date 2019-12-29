@@ -38,15 +38,8 @@ public class DawaPageApplication implements CommandLineRunner {
         Users amd = new Users();
         amd.setEmail("kk@kk.com");
         amd.setPassword("kk");
-         amd.setFirst_name("Kemal");
-          amd.setSecond_name("Mohammed");
-          amd.setLast_name("AHMED");
-           amd.setGender("Male");
-           amd.setCountry("Eritrea");
-           amd.setTown("Asmara");
-           amd.setPhone_Number("+211920349703");
-           amd.setUserActive(true);
-              userService.newAdmin(amd);
-}
-
+        amd.setName("Kemal Mohammed");
+        amd.setUserActive(true);
+        userService.newAdmin(amd);
+    }
 }

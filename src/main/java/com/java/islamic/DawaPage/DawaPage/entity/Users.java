@@ -25,6 +25,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -39,34 +40,15 @@ public class Users {
     private Long user_id;
 
     @Email
-    @NotEmpty
     private String email;
-    @NotEmpty
+
     private String password;
     @Transient
     private String password2;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    public LocalDate birthDate;
  
-
     @NotEmpty
-    private String first_name;
-    @NotEmpty
-    private String second_name;
-    @NotEmpty
-    private String last_name;
-
-//    @NotEmpty
-//    private String birth_date;
-    @NotEmpty
-    private String gender;
-    @NotEmpty
-    private String country;
-    private String town;
-    @NotEmpty
-    private String phone_Number;
-
+    private String name;
     private boolean userActive;
 
     @Length(max = 1000)
@@ -86,6 +68,7 @@ public class Users {
     private Long createdBy;
 
     public Users() {
+        this.userActive = false;
     }
 
     public String getExtranote() {
@@ -132,20 +115,12 @@ public class Users {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getSecond_name() {
-        return second_name;
-    }
-
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isUserActive() {
@@ -156,14 +131,13 @@ public class Users {
         this.userActive = userActive;
     }
 
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
+//    public String getLast_name() {
+//        return last_name;
+//    }
+//
+//    public void setLast_name(String last_name) {
+//        this.last_name = last_name;
+//    }
     public LocalDateTime getLastUpdatedDate() {
         return lastUpdatedDate;
     }
@@ -178,38 +152,6 @@ public class Users {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getPhone_Number() {
-        return phone_Number;
-    }
-
-    public void setPhone_Number(String phone_Number) {
-        this.phone_Number = phone_Number;
     }
 
     public List<Sub_topic> getSub_topicList() {
@@ -240,28 +182,19 @@ public class Users {
         this.createdBy = createdBy;
     }
 
-  
-
     @Override
     public String toString() {
-        return "User{" + "user_id=" + user_id + ", email=" + email + ", password=" + password + ", password2=" + password2 + ", first_name=" + first_name + ", second_name=" + second_name + ", last_name=" + last_name + ", gender=" + gender + ", country=" + country + ", town=" + town + ", phone_Number=" + phone_Number + ", userActive=" + userActive + ", extranote=" + extranote + ", sub_topicList=" + sub_topicList + ", roles=" + roles + ", lastUpdatedDate=" + lastUpdatedDate + ", createdDate=" + createdDate + '}';
+        return "Users{" + "user_id=" + user_id + ", email=" + email + ", password=" + password + ", password2=" + password2 + ", name=" + name + ", userActive=" + userActive + '}';
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+    public String getBCryptPassword( ) {
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return (encoder.encode(this.password));
     }
 
     public String getFullName() {
-        return first_name + " " + second_name;
+        return name;
     }
-
-    /**
-     * this method converts string Date to LocalDate
-     */
-  
 
 }

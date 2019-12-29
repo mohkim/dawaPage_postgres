@@ -29,7 +29,7 @@
                     <tbody>
                         <tr  th:each="msg:${allmessages}"> 
                             <td  class="d-none" th:text="${msg.id}" >1</td>
-                            <td   th:text="${msg.user.first_name}" >1</td>
+                            <td   th:text="${msg.user.name}" >1</td>
                             <td th:text="${#temporals.format(msg.createdDate, 'dd-MMM-yyyy')}" ><h5>ሓዲስ</h5></td>
                             <td th:text="${msg.topic}"><h5>ሓዲስ</h5></td>
 

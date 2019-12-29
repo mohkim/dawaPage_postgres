@@ -3,104 +3,114 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       >
-    <head  th:include="fragments/components::components">   </head>
+    <head  th:include="fragments/components::components">  
+
+        <title> Dawa Page </title>
+
+    </head>
 
 
     <body>
- 
 
 
-            <div   th:include="fragments/header::header" ></div>
 
-            <!-- here starts body parts-->
-            
-                <section  style="height: 100% "  >
+        <div   th:include="fragments/header::header" ></div>
+
+        <!-- here starts body parts-->
+
+        <section  style="height: 100% "  >
             <div  class="container pt-5" >
 
-  <div class=" row justify-content-md-center">
-                <div class="col-lg-4  ">
+                <div class=" row justify-content-md-center">
+                    <div class="col-lg-4  ">
 
 
-                    <div  id="messageBord">
-                        
-     
-                    <div   class="alert alert-info"  th:if="${param.error}"  id="message1" >
-                        <p class="text text-center"  >Wrong  Email or Password ! </p>
-                    </div>
-                    <div   class="alert alert-info  d-none"   id="message2" >
-                        <p class="text text-center"  id="message1" >User Has been Disabled By Admin  </p>
-                    </div>
-                                       </div>
-                    <!-- form card login with validation feedback -->
-                    <div class="card card-outline-secondary">
-                        <div class="card-header">
-                            <h3 class="mb-0" style="text-align: center">Login</h3>
+                        <div  id="messageBord">
+
+
+                            <div   class="alert alert-danger"  th:if="${param.error}"  id="msg1" >
+                                <p class="text text-center"  >Wrong  Email or Password ! </p>
+                            </div>
+                            <div   class="alert alert-danger  d-none"   id="msg" >
+                                <p class="text text-center"  id="msg_body" > </p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form class="form" role="form"   th:action="@{/login}"  method="POST">
-                                <div class="form-group">
-                                    <label for="uname1">Username</label>
-                                    <input type="text" class="form-control" name="username" id="uname1" required=""/>
-                                    <div class="invalid-feedback">Please enter your  email</div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" id="pwd1"  name="password"  required=""  />
-                                    <div class="invalid-feedback">Please enter a password</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-l12  col-sm-12">
-                                        <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">Login</button>
+                        <!-- form card login with validation feedback -->
+                        <div class="card card-outline-secondary">
+                            <div class="card-header">
+                                <h3 class="mb-0" style="text-align: center">Login</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form" role="form"   th:action="@{/login}"  method="POST">
+                                    <div class="form-group">
+                                        <label for="uname1">Username</label>
+                                        <input type="text" class="form-control" name="username" id="uname1" required=""/>
+                                        <div class="invalid-feedback">Please enter your  email</div>
                                     </div>
-                                    
-                                </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" id="pwd1"  name="password"  required=""  />
+                                        <div class="invalid-feedback">Please enter a password</div>
+                                    </div>
 
-                            </form>
+                                    <div class="row">
+                                        <div class="col-l12  col-sm-12">
+                                            <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">Login</button>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div  class="col text text-left">
+                                            <a class=" btn-l" href="#"  th:href="@{/forgotPassword}" >Forgot Password</a>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <!--/card-body-->
                         </div>
-                        <!--/card-body-->
+                        <!-- /form card login -->
+
                     </div>
-                    <!-- /form card login -->
-
                 </div>
-            </div>
 
             </div>
-        
+
         </section>
 
-           
-
-            <!-- ends here -->
 
 
-            <div   th:include="fragments/footer::footer" ></div>
-       
+        <!-- ends here -->
 
-          <script    type="text/javascript">
+
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+        <script    type="text/javascript">
             $(document).ready(function () {
-                  
-                $("#message2").removeClass("d-none");
-                $("#message2").addClass("d-none");
-                $("#btnLogin").on("click", function (e) {
-                    e.preventDefault();
-                    var email = $("#uname1").val();
-                    var i;
-                    console.log(email);
-                    $.getJSON("/login2", {email: email}, function (data, textStatus, jqXHR) {
-                        if (data == 2) {
-                                $("#message1").empty().removeClass();
-                            $("#message2").removeClass("d-none");
-                      
-                           
-                                       
-                            console.log("User  Disabled ");
-                        } else {
-                            console.log("User  Enabled ");
-                            $("form").trigger("submit");
-                        }
-                    });
-                });
+
+            $("#msg").addClass("d-none");
+            $("#msg1").removeClass("d-none");
+            $("#btnLogin").on("click", function (e) {
+            e.preventDefault();
+            var email = $("#uname1").val();
+            var i;
+            console.log(email);
+            $.getJSON("/login2", {email: email}, function (data, textStatus, jqXHR) {
+            if (data == 2) {
+             $("#msg1").addClass("d-none");
+            $("#msg").removeClass("d-none");
+            $("#msg_body").text("User Disabled By Admin , Contact Admin !!!");
+             console.log("User  Disabled ");
+
+            } else {
+            console.log("User  Enabled ");
+
+            $("form").trigger("submit");
+            }
+            });
+            });
             });
         </script>
     </body>

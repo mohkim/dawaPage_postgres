@@ -22,6 +22,8 @@ public interface UserRepository extends JpaRepository<Users, Long> {
   @Query( "select  u from Users u   join fetch u.roles r  where r.name=?1" )  //where r=?1
     public List<Users> findAdminUser(String name);//
     
+//   public  List<Users> findByEmailIdIgnoreCase(String emailId);
+    
    
 
 }

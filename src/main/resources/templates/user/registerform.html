@@ -15,7 +15,6 @@
 
         <div   th:include="fragments/header::header" ></div>
         <!-- here starts body parts-->
-
         <section     >
             <div  class="container pt-5" >
 
@@ -25,155 +24,54 @@
 
 
                         <!-- body start here -->
-                        <div   class="alert alert-info"  th:if="${exist}">
-                            <p class="text text-center">User with this Email  already Exist ! </p>
-                        </div>
+
                         <div class="jumbotron">
                             <p>
                                 ሓዲሽ ኣባል ክትምዝግብ ከሎኻ ኣብ ግምት ከተእትዎ ዝግበኣካ 
                                 ኣወንታዊ ኣስተዋጽኦ ኣብዚ ወብሳይት ክገብር ይኽእል ኢዩ ትብሎ እዩ ። 
-                                
+
                             </p>
-                            
+
                         </div>
 
-
+                        <div   class="alert alert-danger"  th:if="${exist}">
+                            <p class="text text-center">User with this Email  already Exist ! </p>
+                        </div>
                         <div class="card card-outline-secondary">
                             <div class="card-header">
                                 <h3 class="mb-0  text-center"> ሓዲሽ ኣባል ምምዝጋብ ፎርም</h3>
                             </div>
                             <div class="card-body">
-                                <form class="form" role="form"  th:object="${user}"  th:action="@{/registerformSave}"  method="POST" autocomplete="off">
+                                <form class="form" role="form"  th:object="${user}"  th:action="@{/registerformSave}"  method="POST" >
 
                                     <div class="row">
 
-                                        <div class="col-6">
+                                        <div class="col">
 
                                             <!-- first Name -->
                                             <div class="form-group">
-                                                <label for="firstName">First Name</label>
-                                                <input type="text" class="form-control" th:field="*{first_name}"  id="firstName" required=""/>
-                                                <div  class="text text-danger" th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></div>    
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6">
-
-                                            <!-- Second Name -->
-                                            <div class="form-group">
-                                                <label for="fathersName">Father's Name</label>
-                                                <input type="text" class="form-control" id="fathersName" th:field="*{second_name}" required=""/>
-                                                <div  class="text text-danger" th:if="${#fields.hasErrors('second_name')}" th:errors="*{second_name}"></div>    
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="LastName">Last Name</label>
-                                        <input type="text" class="form-control" id="LastName"  th:field="*{last_name}"  required=""/>
-                                        <div  class="text text-danger" th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"></div>    
-                                    </div>
-                                    <!-- gender  -->
-                                    <div class="col-md-6 pb-3">
-                                        <label for="exampleAccount">Gender</label>
-                                        <div class="form-group small">
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" id="gender1" th:field="*{gender}"  required="true" value="Male"/> Male
-                                                </label>
-
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="radio" name="gender" id="gender2"  th:field="*{gender}" required="true" value="Female"/> Female
-                                                </label>
-                                            </div>
-                                            <div  class="text text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>    
-
-                                        </div>
-                                    </div>
-
-                                    <!-- /gender  -->
-                                    <div class="form-group">
-                                        <label for="birthdate">Birth Date      : </label>    </br>
-                              <input   data-date-format="dd/mm/yyyy" id="datepicker"  th:field="*{birthDate}"   required="true"/>  
-<!--                                        <input  type="date"  id="datep"  th:value="*{{birthDate}}"   required="true"/>-->
-                                        <div  class="text text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>    
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="email1">Email</label>
-                                        <input type="email" class="form-control" id="email1"  value="" th:field="*{email}"    required=""/>
-                                        <div  class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>    
-                                    </div>
-                                    <!-- 2 -->
-                                    <div class="row">
-                                        <!-- Password -->
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="pas">Password</label>
-                                                <input type="password"  class="form-control" value=""   id="pas" th:field="*{password}"   required=""/>
-                                                <div  class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>    
-                                            </div>
-
-                                        </div>
-                                        <!-- Password2 -->
-                                        <div class="col-6">
-
-
-                                            <div class="form-group">
-                                                <label for="password2">Retype Password</label>
-                                                <input type="password" class="form-control"  id="password2"  required=""     />
+                                                <label for="firstName">Full Name</label>
+                                                <input type="text" class="form-control"  th:field="*{name}"  id="firstName" required=""/>
 
                                             </div>
                                         </div>
-                                    </div>
 
-
+                                    </div>  
 
                                     <div class="row">
 
-                                        <div class="col-6">
+                                        <div class="col">
 
-                                            <!-- Phone Number-->
+                                            <!-- first Name -->
                                             <div class="form-group">
-                                                <label for="PhoneNumber">Phone Number</label>
-                                                <input type="text" class="form-control" id="PhoneNumber" th:field="*{phone_Number}" required=""/>
-                                                <div  class="text text-danger" th:if="${#fields.hasErrors('phone_Number')}" th:errors="*{phone_Number}"></div>    
+                                                <label for="firstName">Email</label>
+                                                <input type="email" class="form-control"  th:field="*{email}"  id="firstemail" required=""/>
+
                                             </div>
                                         </div>
 
-                                        <div class="col-6">
+                                    </div> 
 
-                                            <!-- Second Name -->
-                                            <div class="form-group">
-                                                <label for="country">Country of Living </label>
-                                                <input type="text" class="form-control" id="country"  th:field="*{country}" required=""/>
-                                                <div  class="text text-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>    
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- city -->
-
-                                    <div class="form-group">
-                                        <label for="City">City </label>
-                                        <input type="text" class="form-control" id="City"  th:field="*{town}"  required=""/>
-                                        <div  class="text text-danger" th:if="${#fields.hasErrors('town')}" th:errors="*{town}"></div>    
-                                    </div>
-
-                                    <!-- last  -->
-                                    <div class="row">
-                                        <div class="col s12 l12">
-                                            <p>
-                                                <input type="checkbox" id="usragree" />
-                                                <label for="usragree">I agree </label>
-                                                <a href="/agreement"> With all Rules and Regulation of this Website</a>
-                                            </p>
-
-                                        </div>
-                                    </div>
                                     <!-- Submit Button  -->
 
                                     <div class="row  "   >
@@ -198,36 +96,10 @@
 
 
 
-
-
-
-
         <!-- ends here -->
         <div   th:include="fragments/footer::footer" ></div>
 
-        <style type="text/css">
 
-            .datepicker {
-                font-size: 0.875em;
-
-            }
-            /* solution 2: the original datepicker use 20px so replace with the following:*/
-
-            .datepicker td, .datepicker th {
-                width: 1.5em;
-                height: 1.5em;
-            }
-
-        </style>
-        <script type="text/javascript">
-            $('#datepicker').datepicker({
-                weekStart: 1,
-                daysOfWeekHighlighted: "6,0",
-                autoclose: true,
-                todayHighlight: true,
-            });
-//            $('#datepicker').datepicker("setDate", new Date());
-        </script>
 
 
     </body>

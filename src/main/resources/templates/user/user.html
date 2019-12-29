@@ -37,10 +37,8 @@
                 <thead>
                     <tr>
                         <th class="d-none">id</th>
-                        <th>First Name</th>
-                        <th>Father's Name</th>
-                        <th>last Name</th>
-                        <th>Gender</th>
+                        <th>Full Name</th>
+                      
                         <th>Active</th>
                         <th>Detail</th>
                         <th>Edit</th>
@@ -51,10 +49,8 @@
                 <tbody>
                     <tr  th:each="user:${data}"> 
                         <td class="d-none"  th:text="${user.user_id}" >1</td>
-                        <td th:text="${user.first_name}"><h5>ሓዲስ</h5></td>
-                        <td th:text="${user.second_name}"><h5>ሓዲስ</h5></td>
-                        <td th:text="${user.last_name}"><h5>ሓዲስ</h5></td>
-                        <td   th:text="${user.gender}" >1</td>
+                        <td th:text="${user.name}"><h5>ሓዲስ</h5></td>
+                       
                         <td   th:text="${user.userActive}?'Active':'Inactive'" ></td>
 
                         <td ><a      th:href="@{userdetail(uid=${user.user_id})}"   >Detail</a></td>   <!--th:href="@{topicfind/(id=${topic.id})}"-->

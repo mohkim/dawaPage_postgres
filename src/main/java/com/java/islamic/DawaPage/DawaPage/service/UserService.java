@@ -6,10 +6,8 @@
 package com.java.islamic.DawaPage.DawaPage.service;
 
 import com.java.islamic.DawaPage.DawaPage.entity.Roles;
-import com.java.islamic.DawaPage.DawaPage.entity.Sub_topic;
 import com.java.islamic.DawaPage.DawaPage.entity.Users;
 import com.java.islamic.DawaPage.DawaPage.repository.UserRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +33,10 @@ public class UserService {
         user.addRoles(roleService.getAdminRole());
         userRepository.save(user);
 
+    }
+
+    public Users findUserById(Long id) {
+        return userRepository.findById(id).get();
     }
 
     public void newUser(Users user) {
@@ -77,8 +79,11 @@ public class UserService {
 
     public Users findByEmail(String email) {
         List<Users> list = userRepository.findByEmail(email);
-
-        return list.get(0);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 
     public int userDiabled(String email) {
@@ -93,19 +98,23 @@ public class UserService {
             }
         }
     }
-/**
- * returns all Users with Admin Role
- * @return  
- */
+
+    /**
+     * returns all Users with Admin Role
+     *
+     * @return
+     */
     public List<Users> findUser_Admin() {
         Roles adm = roleService.getAdminRole();
         return userRepository.findAdminUser(adm.getName());
 
     }
-/**
- * returns all Users with User Role
- * @return  
- */
+
+    /**
+     * returns all Users with User Role
+     *
+     * @return
+     */
     public List<Users> findUser_User() {
         Roles usr = roleService.getUserRole();
         return userRepository.findAdminUser(usr.getName());

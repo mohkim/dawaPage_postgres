@@ -26,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      public static String[] adminPrevilage = {
         "/user","/userdetail", "/topic","/postAdminPage","/usertopic","/messageInbox"};
      public static String[] noPrevilage = {
-       "/","/showPostDetail", "/login",  "/login2", "/webjars/**", "*/js/**", "/css/**"};
+       "/","/showPostDetail", "/login",  "/login2", "/webjars/**", "*/js/**", "/css/**","/confirm-account","/newpasswordsave"};
+     public static String[]  anyRole={"/password","/registerform","/about" };
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(noPrevilage).permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers(adminPrevilage).hasAnyRole("ADMIN")
-                 .antMatchers("/password","/registerform","/about").hasAnyRole("ADMIN","USER")
+                 .antMatchers(anyRole).hasAnyRole("ADMIN","USER")
                 .antMatchers(userPrevilage).hasRole("USER")
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/").and().logout().logoutSuccessUrl("/");
