@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      >
+    <head  th:include="fragments/components::components">   </head>
+
+
+    <body>
+
+
+        <div   th:include="fragments/header::header" ></div>
+        <!-- here starts body parts-->
+
+        <section  style="height: 100% "  >
+           
+    
+      <div  class="container pt-4" >
+
+          <div   class="alert alert-info"  th:if="${info}"  id="msg1" >
+              <p class="text text-center"  th:text="${info_msg}" ></p>
+          </div>
+            <div   class="alert alert-danger"  th:if="${error}"  id="msg2" >
+                          <p class="text text-center"  th:text="${error_msg}" > </p>
+                      </div>
+     </div>
+
+      </section>
+    <!-- ends here -->
+        <div   th:include="fragments/footer::footer" ></div>
+
+
+    </body>
+</html>

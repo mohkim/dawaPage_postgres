@@ -70,9 +70,9 @@ public class UserAccountController {
 
             sendEmailConfirmation(confirmationToken, user);
 
-            model.addAttribute("emailId", user.getEmail());
-
-            return "user/sendconfirm";
+            model.addAttribute("info", true);
+            model.addAttribute("info_msg", " ናብ ዝስዕብ ኢመይል መልአኽቲ ተሰዲዱ ኣሎ    :" + user.getEmail() + "   !!!!!");
+            return "user/messageDisplay";
         }
 
     }
@@ -82,10 +82,11 @@ public class UserAccountController {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
         if (token != null) {
-            
-            if (token.getExpiredate().isAfter(LocalDateTime.now())) {
-                model.addAttribute("message", "token expired");
-                return "error";
+
+            if (token.getExpiredate().isBefore(LocalDateTime.now())) {
+                model.addAttribute("error", true);
+                model.addAttribute("error_msg", "ግዚኡ ዘሕለፈ  መልአኽቲ !!!!!");
+                return "user/messageDisplay";
             }
             Users user = userService.findByEmail(token.getUser().getEmail());
             user.setUserActive(true);
@@ -94,8 +95,9 @@ public class UserAccountController {
             model.addAttribute("user", user);
             return "user/setpassword";
         } else {
-            model.addAttribute("message", "The link is invalid or broken!");
-            return "error";
+            model.addAttribute("error", true);
+            model.addAttribute("error_msg", "ዘይቕቡል መልአኽቲ ወይ ዝተበላሸወ መልአኽቲ !!!!!");
+            return "user/messageDisplay";
         }
 
     }
@@ -112,7 +114,9 @@ public class UserAccountController {
         usr.addRoles(roleService.getUserRole());
         userService.save(usr);
 
-        return "user/success";
+        model.addAttribute("info", true);
+        model.addAttribute("info_msg", "ሓዲሽ ፓስዎርት ኣብ ምቃም ተዓዊትካ ኣለኻ !!!!!");
+        return "user/messageDisplay";
 
     }
 
@@ -139,11 +143,14 @@ public class UserAccountController {
             sendEmailConfirmation(ct, user);
 
             model.addAttribute("emailId", user.getEmail());
-
-            return "user/sendconfirm";
+            
+            model.addAttribute("info", true);
+            model.addAttribute("info_msg", " ናብ ዝስዕብ ኢመይል መልአኽቲ ተሰዲዱ ኣሎ    :" + user.getEmail() + "   !!!!!");
+            return "user/messageDisplay";
         } else {
-            model.addAttribute("message", "User with this Email Do not Exist !!");
-            return "error";
+             model.addAttribute("error", true);
+            model.addAttribute("error_msg", "በዚ ኢመይል ኣባል የብልናን  !!!!!");
+            return "user/messageDisplay";
         }
 
     }

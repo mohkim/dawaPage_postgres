@@ -17,13 +17,11 @@ import java.security.Principal;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
- 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
-     private static final Logger LOG=LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserService userService;
 
@@ -116,7 +114,7 @@ public class UserController {
 
     @PostMapping("/usersave")
     public String SaveUser(@ModelAttribute("user") Users user) {
-        LOG.info("user after -> {}"+ user);
+        LOG.info("user after -> {}" + user);
         Users user2 = new Users();
         user2 = userService.getUser(user.getUser_id());
         user2.setUserActive(user.isUserActive());
@@ -125,31 +123,6 @@ public class UserController {
         return "redirect:/user";
     }
 
-//    @GetMapping("/registerform")
-//    public String getRegistrationForm(Model model) {
-//
-//        model.addAttribute("user", new Users());
-//
-//        return "user/registerform";
-//    }
-//
-//    @PostMapping("/registerformSave")
-//    public String saveRegistrationForm(@Valid Users user, Model model, BindingResult bindingResult, Principal principal) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return "user/registerform";
-//        } else if (userService.isEmailPresent(user.getEmail())) {
-//            model.addAttribute("exist", true);
-//            return "user/registerform";
-//        }
-//        Users u = userService.findByEmail(principal.getName());
-//        user.setCreatedBy(u.getUser_id());  // 
-//        //user.dbBithDate();          
-//        userService.newUser(user);
-//
-//        return "user/user_success";
-//
-//    }
 //     Use  profile  Controllers -----------------------------------------------------------------
     @GetMapping("/address")
     public String getUserProfile(Model model, Principal principal) {
@@ -170,25 +143,24 @@ public class UserController {
 
     @GetMapping("/password")
     public String getUserPassword(Model model) {
-    model.addAttribute("user", new Users());
-         return "user/password";
+        model.addAttribute("user", new Users());
+        return "user/password";
     }
 
     @PostMapping("/passwordsave")
     public String SaveUserPassword(Model model, @ModelAttribute("user") Users user, Principal principal) {
-LOG.info("Kemal Password Save Controller ");
+        LOG.info("Kemal Password Save Controller ");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         Users user1 = userService.findByEmail(principal.getName());
-        LOG.info("bcrypted Password -- > {}", user1.getPassword());
-        LOG.info("new Password -- > {}"+ user.getPassword());
-        LOG.info("new Password 2 -- > {}"+user.getPassword2());
-
         // confirm if he knows the old password
         if (encoder.matches(user.getPassword(), user1.getPassword())) {
             user1.setPassword(encoder.encode(user.getPassword2()));
             userService.save(user1);
-            return "user/success";
+
+            model.addAttribute("info", true);
+            model.addAttribute("info_msg", " ኣካውንት ፓስፖርድ ኣዳሊኻ ኣለኻ ብ ዓወት!!!!!");
+            return "user/messageDisplay";
 
         } else {
             model.addAttribute("error", true);
@@ -212,10 +184,12 @@ LOG.info("Kemal Password Save Controller ");
     }
 
     @PostMapping("/userpost")
-    public String SaveUserPost(@ModelAttribute("post") Post post) {
+    public String SaveUserPost(Model model , @ModelAttribute("post") Post post) {
 
         postService.savePost(post);
-        return "user/success";
+        model.addAttribute("info", true);
+        model.addAttribute("info_msg", " ብዓወት ጽሑፍካ ዓቁብካዮ !!!!!");
+        return "user/messageDisplay";
     }
 
     // ----------------------------------user  activity  part -----------------------------------------------------------
@@ -224,13 +198,11 @@ LOG.info("Kemal Password Save Controller ");
 
         Users user = userService.findByEmail(principal.getName());
         List<Comment> commentNotReadList = commentService.getCommentNotRedByUser(user);
-
         model.addAttribute("comList", commentNotReadList);
-
         return "user/activity/activity";
 
     }
-   
+
 }
 
 class UserTopicEdit {
