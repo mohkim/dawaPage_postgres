@@ -45,31 +45,32 @@ public class PostController {
         Users user = userService.findByEmail(email);
 
         List<Sub_topic> pageContent = user.getSub_topicList();
-        
-        if(!pageContent.isEmpty()){
-              model.addAttribute("subTopicList", pageContent);
-              return "post/usertopicChoice";
+
+        if (!pageContent.isEmpty()) {
+            model.addAttribute("subTopicList", pageContent);
+            return "post/usertopicChoice";
         } else {
-              return "post/notopicgiven";
+            model.addAttribute("info", true);
+            model.addAttribute("info_msg", "ትጽሕፎ ኣርእስቲ ኣይተወሃበካን ኣሎ ። ንኽወሃበካ ንምምሕዳር ተወከስ !!!!!");
+            return "user/messageDisplay";
         }
-      
 
     }
 
     @GetMapping("/postList")
     public String addPostInSubtopic(Model model, @RequestParam String id, Principal principal) {
-        
+
         String email = principal.getName();
         Users user = userService.findByEmail(email);
-        
+
         if (subTopicService.subtopicAccessUser(user, Long.parseLong(id))) {
-            
+
             model.addAttribute("postList", postService.findbySubTopic(Long.parseLong(id)));
             model.addAttribute("subTopic", subTopicService.getSubTopic(Long.parseLong(id)));
             return "post/userpostList";
-            
+
         } else {
-                         return "redirect:/postChoice";
+            return "redirect:/postChoice";
         }
 
     }

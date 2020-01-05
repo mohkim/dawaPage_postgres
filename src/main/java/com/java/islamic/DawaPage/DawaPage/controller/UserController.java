@@ -124,14 +124,18 @@ public class UserController {
     }
 
 //     Use  profile  Controllers -----------------------------------------------------------------
-    @GetMapping("/address")
+    @GetMapping("/UserProfile")
     public String getUserProfile(Model model, Principal principal) {
+//
+//        Users user = userService.findByEmail(principal.getName());
+//        model.addAttribute("user", user);
+//        //for password setting 
 
-        Users user = userService.findByEmail(principal.getName());
-        model.addAttribute("user", user);
-        //for password setting 
+        ///    return "user/address";
+        model.addAttribute("info", true);
+        model.addAttribute("info_msg", "User Profile Under Construction !!!!");
+        return "user/messageDisplay";
 
-        return "user/address";
     }
 
     @PostMapping("/address/save")
@@ -184,7 +188,7 @@ public class UserController {
     }
 
     @PostMapping("/userpost")
-    public String SaveUserPost(Model model , @ModelAttribute("post") Post post) {
+    public String SaveUserPost(Model model, @ModelAttribute("post") Post post) {
 
         postService.savePost(post);
         model.addAttribute("info", true);
