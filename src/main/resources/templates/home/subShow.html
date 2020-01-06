@@ -12,7 +12,7 @@
 
             <div   th:include="fragments/header::header" ></div>
 
-            <section  style="height: 100% "  >
+            <section     >
                 <div  class="container pt-5" >
 
                     <h1  class="" style="text-align: center ; font-size: 36px"  th:text="${topic.name}" >   ቤት ንባብ </h1>
@@ -21,7 +21,7 @@
                             ንባብ ምንጪ  ፍልጠት ስለዝኾነ ካብ ኣብዚ  ታሕቲ ተዘርዚሩ ዘሎ ኣርእስቲ ብምምራጽ ኣንብቡ ፥
                         </p>
                     </div>
-                    <div  class="row"   >
+                    <div  class="row pb-5"   >
                     <div  class="  col-md-2 "  th:each="subtopic:${subtopicList}"    style="padding-top: 10px"   >
 
 

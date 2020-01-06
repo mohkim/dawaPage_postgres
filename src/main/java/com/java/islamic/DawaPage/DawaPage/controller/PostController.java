@@ -147,7 +147,7 @@ public class PostController {
     @GetMapping("/usertopic")
     public String getUserTopicRelation(Model model) {
 
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.findUser_User());
 
         return "admin/postAdmin/usertopic";
 

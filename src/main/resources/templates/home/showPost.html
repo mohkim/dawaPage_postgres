@@ -16,7 +16,7 @@
             
             
             
-            <section  style="height: 100% "  >
+            <section     >
             <div  class="container pt-5" >
 
                    <div    >
@@ -24,12 +24,12 @@
 
                     <h1   th:text="${subtopic.name}"  style="text-align: center">  title </h1>
                     <div  style="padding-top: 10px">   
-                        <p  th:text="${subtopic.description}">
+                        <p  th:utext="${subtopic.description}">
                                 </p>
                     </div>
                 </div>
 
-                <div   style="padding-top: 10px">
+                <div class="pb-5"   style="padding-top: 10px">
 
 
                     <table class="table table-borderless"   >

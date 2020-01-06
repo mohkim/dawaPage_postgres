@@ -12,40 +12,66 @@
 
         <div   th:include="fragments/header::header" ></div>
 
-        <section   class="pb-5"   >
-            <div  class="container " >
+         <section class="pb-5">
+      <div class="container ">
+        <h1 class=" d-none" th:text="${post.id}" style="text-align: center">
+          <u></u>
+        </h1>
+        <h1 class="" th:text="${post.postTopic}" style="text-align: center">
+          <u></u>
+        </h1>
+        <div style="padding-top: 10px" th:utext="${post.post_content}">
+          <br /><br />
+        </div>
 
-                 <h1 class=" d-none" th:text="${post.id}"  style="text-align: center"><u></u> </h1>  
-                <h1 class="" th:text="${post.postTopic}"  style="text-align: center"><u></u> </h1>
-                <div  style="padding-top: 10px" th:utext="${post.post_content}">
-                    <br/><br/>
-
+        <div class="card">
+          <div class="card-header  text text-center">
+            ካብዚ ንታሕቲ ናይ ርእይቶ ቦታ
+          </div>
+          <div class="card-body">
+            <div th:each="oldc:${commentList}">
+              <div class="row ">
+                <div class="col-2 ">
+                  <p class="text-success  " th:text="${oldc.user.name}"
+                    >Email address</p
+                  >
                 </div>
-                <hr/>
-                ካብዚ ንታሕቲ ናይ ርእይቶ ቦታ 
-                <hr/>
-                <div class=""   th:each="oldc:${commentList}">
-
-                    <label   th:text="${oldc.user.first_name}+' '+${oldc.user.second_name}">Email address</label> 
-                    <p th:text="${oldc.content}">   </p>
-
-                </div>      
-                <div class="pb-5"  sec:authorize="hasRole('ROLE_USER')" >
-                    <form   class="form" th:object="${comment}"    th:action="@{/CommentSave(id=${post.id})}"   method="POST">
-                        <div class="form-group"   >
-                            <label for="exampleInputEmail1"  th:text="${user_name}">ርእይቶኻ ኣብ ታሕቲ ጸሓፍ ?</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"  autocomplete="false" th:field="*{content}" placeholder="ርእይቶኻ ?? " required=""/>
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div> 
-
-
+                <div class="col" >
+                  <p   th:text="${oldc.content}">comment body</p>
+                </div>
+              </div>
             </div>
-
-        </section>
+          </div>
+          <div class="pb-5" sec:authorize="hasRole('ROLE_USER')">
+            <form
+              class="form"
+              th:object="${comment}"
+              th:action="@{/CommentSave(id=${post.id})}"
+              method="POST"
+            >
+              <div class="form-group" id="comment_body">
+                <label  class="pl-3" for="exampleInputEmail1" th:text="${user_name}"
+                  >ርእይቶኻ ኣብ ታሕቲ ጸሓፍ ?</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  autocomplete="false"
+                  th:field="*{content}"
+                  placeholder="ርእይቶኻ ?? "
+                  required=""
+                />
+              </div>
+                 <div class="mx-5  my-0">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                 </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
 
@@ -56,9 +82,6 @@
 
         <!-- ends here -->
         <div   th:include="fragments/footer::footer" ></div>
-
-
-
 
     </body>
 </html>

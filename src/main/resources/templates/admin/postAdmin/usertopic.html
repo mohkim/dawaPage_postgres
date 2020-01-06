@@ -13,17 +13,17 @@
 
         <!--        console start-->
         
-        <div  style="height:100px">
+        <div  >
             
         </div>
-        <section class="pt-5  " style="min-height: 100%;">
+        <section class="pt-5  " >
             <div class="container">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">ተ.ቁ</th>
                             <th scope="col">ስም</th>
-                            <th scope="col">ስም ኣቦ </th>
+                      
                             <th scope="col">    ዝርዝር ዝጽሕፈሉ ዘሎ ኣርእስታት </th>
                             
                         </tr>
@@ -31,8 +31,8 @@
                     <tbody>
                         <tr  th:each="user:${users}">
                             <th scope="row"  th:text="${user.user_id}"  >1</th>
-                            <td  th:text="${user.first_name}">Mark</td>
-                            <td  th:text="${user.second_name}">Otto</td>
+                            <td  th:text="${user.name}">Mark</td>
+                          
                             <td  > 
                                 <div>
                                     <table class="table-borderless">
