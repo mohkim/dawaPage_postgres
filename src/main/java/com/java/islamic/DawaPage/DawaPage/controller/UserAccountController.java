@@ -43,6 +43,9 @@ public class UserAccountController {
     private EmailSenderService emailSenderService;
     @Autowired
     private RoleService roleService;
+
+    public final String url_domain = "http://localhost:8080";
+   // public final String url_domain="https://dawapage.herokuapp.com";
     private static final Logger LOG = Logger.getLogger(UserAccountController.class.getName());
 
     @GetMapping("/registerform")
@@ -68,7 +71,7 @@ public class UserAccountController {
 
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
-            sendEmailConfirmation(confirmationToken, user);
+            sendEmailConfirmation(confirmationToken, user, userService.findUserById(user.getCreatedBy()));
 
             model.addAttribute("info", true);
             model.addAttribute("info_msg", " ናብ ዝስዕብ ኢመይል መልአኽቲ ተሰዲዱ ኣሎ    :" + user.getEmail() + "   !!!!!");
@@ -140,30 +143,57 @@ public class UserAccountController {
 
             }
 
-            sendEmailConfirmation(ct, user);
+            passwordRecover(ct, user);
 
             model.addAttribute("emailId", user.getEmail());
-            
+
             model.addAttribute("info", true);
             model.addAttribute("info_msg", " ናብ ዝስዕብ ኢመይል መልአኽቲ ተሰዲዱ ኣሎ    :" + user.getEmail() + "   !!!!!");
             return "user/messageDisplay";
         } else {
-             model.addAttribute("error", true);
+            model.addAttribute("error", true);
             model.addAttribute("error_msg", "በዚ ኢመይል ኣባል የብልናን  !!!!!");
             return "user/messageDisplay";
         }
 
     }
 
-    private void sendEmailConfirmation(ConfirmationToken ct, Users user) {
+    private void sendEmailConfirmation(ConfirmationToken ct, Users user, Users o_user) {
         confirmationTokenRepository.save(ct);
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(user.getEmail());
         mailMessage.setSubject("Complete Registration!");
-        mailMessage.setFrom("egila1986@gmail.com");
-        mailMessage.setText("To confirm your account, please click here : "
-                + "http://localhost:8080/confirm-account?token=" + ct.getConfirmationToken());
+         mailMessage.setFrom("dawa.age2020@gmail.com");
+        mailMessage.setText(getNewUserMessage(ct.getConfirmationToken(), user.getName(), o_user.getName()));
 
         emailSenderService.sendEmail(mailMessage);
+    }
+
+    private void passwordRecover(ConfirmationToken ct, Users user) {
+        confirmationTokenRepository.save(ct);
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setSubject("Forgot Password!");
+        mailMessage.setFrom("dawa.age2020@gmail.com");
+        mailMessage.setText( getMessageForgotPassword(ct.getConfirmationToken(), user.getName()));
+
+        emailSenderService.sendEmail(mailMessage);
+    }
+
+    public String getMessageForgotPassword(String token_string, String user_n) {
+        String message = "Dear " + user_n + "\n"
+                + "You have asked to reset your password becouse you forgot it . please click link below to  \n"
+                + "reset password for your account : \n"
+                + url_domain + "/confirm-account?token=" + token_string;
+
+                  return message;
+    }
+    public String getNewUserMessage(String token_string, String user_n, String user_o) {
+        String message = "Dear " + user_n + "\n"
+                + "You have been recommended to join  DawaPage  community . Mr  " + user_o + " have registerd you next step \n"
+                + "is to set password for your account  using link below \n"
+                + url_domain + "/confirm-account?token=" + token_string;
+
+                  return message;
     }
 }
